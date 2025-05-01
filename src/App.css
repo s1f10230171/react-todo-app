@@ -1,0 +1,22 @@
+.App {
+  width: 512px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.App-title {
+  background-color: #17194c;
+  color: white;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-content {
+  background-color: white;
+}
