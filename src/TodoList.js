@@ -1,10 +1,10 @@
 import TodoItem from "./TodoItem";
 
-const TodoList = (props) => {
+const TodoList = ({todos}) => {
     return(
         <div>
             {
-                props.todos.map((todo) => <TodoItem todo={todo} />)
+                todos.map((todo) => <TodoItem todo={todo} key={todo.id} />)
             }
         </div>
     );
