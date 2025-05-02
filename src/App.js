@@ -30,12 +30,15 @@ function App() {
   const handleRemove = (deleteId) => {
       setTodos(todos.filter(todo => todo.id !== deleteId));
     }
+  const handleToggle = (todoId) => {
+      setTodos(todos.map(todo => todo.id === todoId ? {...todo, isFinished : !todo.isFinished } : todo));
+  }
   return (
     <div className="App">
       <div className='App-title'>ToDo管理アプリ</div>
       <div className="App-content">
         <TodoInput onAdd={handleAdd} />
-        <TodoList todos={todos} onRemove={handleRemove}/>
+        <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
       </div>
     </div>
   );
