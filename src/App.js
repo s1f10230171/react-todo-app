@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import MyChart from './MyChart';
 
 function App() {
   const createId = () => Math.random().toString(36).substring(2);
@@ -44,6 +45,7 @@ function App() {
         <TodoInput onAdd={handleAdd} />
         <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
         <p>{taskcount===clearcount ? `ALL CLEAR!! タスク数${taskcount}` : `今週のタスクカウント: ${taskcount} / クリア済み : ${clearcount}`}</p>
+        <MyChart />
       </div>
     </div>
   );
