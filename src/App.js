@@ -17,6 +17,7 @@ function App() {
       isFinished: false
     }
   ];
+
   const [todos, setTodos] = useState(initialTodos);
   const handleAdd = (text) => {
     const newTodo = {
@@ -26,12 +27,15 @@ function App() {
     };
     setTodos((todos) => [...todos, newTodo]);
   }
+  const handleRemove = (deleteId) => {
+      setTodos(todos.filter(todo => todo.id !== deleteId));
+    }
   return (
     <div className="App">
       <div className='App-title'>ToDo管理アプリ</div>
       <div className="App-content">
         <TodoInput onAdd={handleAdd} />
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onRemove={handleRemove}/>
       </div>
     </div>
   );
