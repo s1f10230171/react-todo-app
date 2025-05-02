@@ -8,18 +8,6 @@ import History from "./History";
 import Header from './Header';
 
 function App() {
-  // const initialTodos = [
-  //   {
-  //     id: createId(),
-  //     text: "React勉強",
-  //     isFinished: true
-  //   },
-  //   {
-  //     id: createId(),
-  //     text: "Java勉強",
-  //     isFinished: false
-  //   }
-  // ];
   const getToday = () => new Date().toISOString().split("T")[0];
   const today = getToday();
 
@@ -39,28 +27,52 @@ function App() {
   const [todos, setTodos] = useState(() => loadTodosByDate(today));
   const [taskcount, setTaskcount] = useState(0)
   const [clearcount, setClearcount] = useState(0)
+  const countUnfinishedTodos = () => {
+    const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
+    let count = 0;
+    Object.values(all).forEach(todoList => {
+      todoList.forEach(todo => {
+        if (!todo.isFinished) count++;
+      });
+    });
+    return count;
+  };
 
   useEffect(() => {
     saveTodosByDate(today, todos);
+  }, [todos]);
+
+  useEffect(() => {
+    setTaskcount(countUnfinishedTodos());
   }, [todos]);
 
   const handleAdd = (text) => {
     const newTodo = {
       id: createId(),
       text: text,
-      isFinished: false
+      isFinished: false,
+      idDeleted: false
     };
-    setTaskcount(taskcount+1);
     setTodos((todos) => [...todos, newTodo]);
   }
   const handleRemove = (deleteId) => {
-    setTaskcount(taskcount-1);
-    setTodos(todos.filter(todo => todo.id !== deleteId));
+    setTodos(todos.map(todo =>
+      todo.id === deleteId ? { ...todo, isDeleted: true } : todo
+    ));
     }
   const handleToggle = (todoId) => {
-    setClearcount(clearcount+1);
-    setTodos(todos.map(todo => todo.id === todoId ? {...todo, isFinished : !todo.isFinished } : todo));
+    setTodos(prevTodos => {
+      return prevTodos.map(todo => {
+        if (todo.id === todoId) {
+          const updated = { ...todo, isFinished: !todo.isFinished };
+          setClearcount(c => c + (updated.isFinished ? 1 : -1));
+          return updated;
+        }
+        return todo;
+      });
+    });
   }
+
   return (
     <Router>
       <div className="App">
@@ -71,7 +83,7 @@ function App() {
         <div className="App-content">
           <TodoInput onAdd={handleAdd} />
           <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
-          <p>{taskcount===clearcount ? `ALL CLEAR!! タスク数${taskcount}` : `今週のタスクカウント: ${taskcount} / クリア済み : ${clearcount}`}</p>
+          <p>{taskcount===clearcount ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
           <MyChart taskcount={taskcount} clearcount={clearcount} />
         </div>
           } />
