@@ -3,6 +3,9 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import MyChart from './MyChart';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import History from "./History";
+import Header from './Header';
 
 function App() {
   // const initialTodos = [
@@ -59,15 +62,23 @@ function App() {
     setTodos(todos.map(todo => todo.id === todoId ? {...todo, isFinished : !todo.isFinished } : todo));
   }
   return (
-    <div className="App">
-      <div className='App-title'>ToDo管理アプリ</div>
-      <div className="App-content">
-        <TodoInput onAdd={handleAdd} />
-        <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
-        <p>{taskcount===clearcount ? `ALL CLEAR!! タスク数${taskcount}` : `今週のタスクカウント: ${taskcount} / クリア済み : ${clearcount}`}</p>
-        <MyChart taskcount={taskcount} clearcount={clearcount} />
+    <Router>
+      <div className="App">
+        <div className='App-title'>ToDo管理アプリ</div>
+        <Header />
+        <Routes>
+          <Route path="/" element={
+        <div className="App-content">
+          <TodoInput onAdd={handleAdd} />
+          <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
+          <p>{taskcount===clearcount ? `ALL CLEAR!! タスク数${taskcount}` : `今週のタスクカウント: ${taskcount} / クリア済み : ${clearcount}`}</p>
+          <MyChart taskcount={taskcount} clearcount={clearcount} />
+        </div>
+          } />
+          <Route path="/history" element={<History />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
