@@ -53,6 +53,7 @@ function App() {
       isFinished: false,
       idDeleted: false
     };
+    // console.log(`タスク追加: "${text}", 日付: ${today}`);
     setTodos((todos) => [...todos, newTodo]);
   }
   const handleRemove = (deleteId) => {
@@ -83,7 +84,7 @@ function App() {
         <div className="App-content">
           <TodoInput onAdd={handleAdd} />
           <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
-          <p>{taskcount===clearcount ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
+          <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
           <MyChart taskcount={taskcount} clearcount={clearcount} />
         </div>
           } />
