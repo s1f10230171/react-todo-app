@@ -43,7 +43,7 @@ function MyChart({taskcount, clearcount}) {
     <LineChart width={500} height={300} data={data}>
       <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
       <XAxis dataKey="name" />
-      <YAxis />
+      <YAxis allowDecimals={false}/>
       <Tooltip />
       <Legend />
       <Line type="monotone" dataKey="タスク" stroke="#8884d8" />
