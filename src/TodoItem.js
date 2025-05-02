@@ -1,4 +1,4 @@
-import TodoList from "./TodoList"
+// import TodoList from "./TodoList"
 
 const TodoItem = ({todo, onRemove, onToggle}) => {
     const itemStyle = {
