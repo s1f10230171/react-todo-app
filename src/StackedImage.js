@@ -5,6 +5,9 @@ const imageList = [
     "blue2.png",
     "yellow1.png",
     "yellow2.png",
+    "white1.png",
+    "white2.png",
+    "white3.png",
   ];
 
 const StackedImages = () => {
