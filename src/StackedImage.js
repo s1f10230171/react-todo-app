@@ -3,9 +3,8 @@ import React, { useState } from "react";
 const imageList = [
     "blue1.png",
     "blue2.png",
-    "blue3.png",
-    "purple1.png",
-    "purple2.png",
+    "yellow1.png",
+    "yellow2.png",
   ];
 
 const StackedImages = () => {
