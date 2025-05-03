@@ -6,6 +6,7 @@ import MyChart from './MyChart';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import History from "./History";
 import Header from './Header';
+import StackedImages from './StackedImage';
 
 function App() {
   const getToday = () => new Date().toISOString().split("T")[0];
@@ -81,12 +82,15 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={
-        <div className="App-content">
-          <TodoInput onAdd={handleAdd} />
-          <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
-          <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
-          <MyChart taskcount={taskcount} clearcount={clearcount} />
-        </div>
+          <div>
+          <div className="App-content">
+            <TodoInput onAdd={handleAdd} />
+            <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
+            <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
+            <MyChart taskcount={taskcount} clearcount={clearcount} />
+          </div>
+            <StackedImages />
+          </div>
           } />
           <Route path="/history" element={<History />} />
         </Routes>
