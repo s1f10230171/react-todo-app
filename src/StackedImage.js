@@ -8,6 +8,12 @@ const imageList = [
     "white1.png",
     "white2.png",
     "white3.png",
+    "orange1.png",
+    "orange2.png",
+    "pink1.png", 
+    "pink2.png",
+    "purple1.png", 
+    "red1.png", 
   ];
 
 const StackedImages = () => {
@@ -19,7 +25,7 @@ const StackedImages = () => {
   };
 
   return (
-    <div style={{ position: "relative", width: "300px", height: "300px", border: "1px solid #ccc" }}>
+    <div style={{ position: "relative", width: "300px", height: "400px", border: "1px solid #ccc" }}>
       {images.map((src, index) => (
         <img
           key={index}
