@@ -16,25 +16,28 @@ const imageList = [
     "red1.png", 
   ];
 
+const getRandomOffset = () => Math.floor(Math.random() * 11) - 5;
+
 const StackedImages = () => {
   const [images, setImages] = useState([]);
 
   const addRandomImage = () => {
     const randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-    setImages((prevImages) => [...prevImages, `/images/${randomImage}`]);
+    const offset = getRandomOffset();
+    setImages((prevImages) => [...prevImages, { src: `/images/${randomImage}`, offset }]);
   };
 
   return (
     <div style={{ position: "relative", width: "300px", height: "400px", border: "1px solid #ccc" }}>
-      {images.map((src, index) => (
+      {images.map((img, index) => (
         <img
           key={index}
-          src={src}
+          src={img.src}
           alt={`image-${index}`}
           style={{
             position: "absolute",
             top: 0,
-            left: 0,
+            left: `${img.offset}px`,
             width: "100%",
             height: "100%",
             objectFit: "cover",
