@@ -41,7 +41,16 @@ function StackedImages({getThisWeekClearCount}) {
   }, [getThisWeekClearCount]);
 
   return (
-    <div style={{ position: "relative", width: "300px", height: "400px", border: "1px solid #ccc" }}>
+    <div style={{ position: "relative", width: "400px", height: "550px", border: "1px solid #ccc", left: "10%", marginBottom:"30px"}}>
+      <img src="/images/kabin.png"
+        style={{
+          width: "230px", 
+          height: "auto",       
+          position: "absolute", 
+          bottom: "10px",       
+          right: "98px" ,
+          zIndex: 9999      
+        }} />
       {images.map((img, index) => (
         <img
           key={index}
@@ -49,10 +58,10 @@ function StackedImages({getThisWeekClearCount}) {
           alt={`image-${index}`}
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
+            top: "20px",
+            left: "10%",
+            width: "75%",
+            height: "75%",
             objectFit: "cover",
             zIndex: index,
           }}
