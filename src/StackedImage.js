@@ -41,7 +41,7 @@ function StackedImages({getThisWeekClearCount}) {
   }, [getThisWeekClearCount]);
 
   return (
-    <div style={{ position: "relative", width: "400px", height: "550px", border: "1px solid #ccc", left: "10%", marginBottom:"30px"}}>
+    <div style={{ position: "relative", width: "400px", height: "550px", border: "1px solid #ccc", left: "10%", marginBottom:"30px", marginTop:"30px", }}>
       <img src="/images/kabin.png"
         style={{
           width: "230px", 
