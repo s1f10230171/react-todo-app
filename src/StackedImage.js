@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const imageList = [
+function StackedImages({getThisWeekClearCount}) {
+  const [images, setImages] = useState([]);
+  const imageList = [
     "blue1.png",
     "blue2.png",
     "yellow1.png",
@@ -10,22 +12,33 @@ const imageList = [
     "white3.png",
     "orange1.png",
     "orange2.png",
-    "pink1.png", 
+    // "pink1.png", 
     "pink2.png",
     "purple1.png", 
     "red1.png", 
+    "blue1.png",
+    "yellow1.png",
+    "white1.png",
   ];
+  const currentIndex = useRef(0);
+  const addSequentialImage = () => {
+    if (currentIndex.current >= imageList.length) return; // 画像が尽きたら止める
 
-const getRandomOffset = () => Math.floor(Math.random() * 11) - 5;
+    const imageName = imageList[currentIndex.current];
+    currentIndex.current += 1;
 
-const StackedImages = () => {
-  const [images, setImages] = useState([]);
-
-  const addRandomImage = () => {
-    const randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-    const offset = getRandomOffset();
-    setImages((prevImages) => [...prevImages, { src: `/images/${randomImage}`, offset }]);
+    setImages(prevImages => [
+      ...prevImages,
+      { src: `/images/${imageName}`, offset: 0 }
+    ]);
   };
+
+  useEffect(() => {
+    const count = getThisWeekClearCount();
+    for (let i = 0; i < count && i < imageList.length; i++) {
+      addSequentialImage();
+    }
+  }, [getThisWeekClearCount]);
 
   return (
     <div style={{ position: "relative", width: "300px", height: "400px", border: "1px solid #ccc" }}>
@@ -37,7 +50,7 @@ const StackedImages = () => {
           style={{
             position: "absolute",
             top: 0,
-            left: `${img.offset}px`,
+            left: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
@@ -45,11 +58,9 @@ const StackedImages = () => {
           }}
         />
       ))}
-      <button onClick={addRandomImage} style={{ position: "absolute", bottom: 10, left: 10, zIndex: 100 }}>
-        画像を追加
-      </button>
     </div>
   );
+
 };
 
 export default StackedImages;

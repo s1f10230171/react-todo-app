@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
@@ -38,6 +38,28 @@ function App() {
     });
     return count;
   };
+
+  const getThisWeekClearCount = useCallback(() => {
+    const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
+    const now = new Date();
+    const currentDay = now.getDay(); // 0:日曜, 1:月曜, ..., 6:土曜
+    const monday = new Date(now);
+    // 月曜日の日付を取得（日曜だったら1日前、月曜ならそのまま）
+    const diffToMonday = (currentDay + 6) % 7;
+    monday.setDate(now.getDate() - diffToMonday);
+  
+    let total = 0;
+  
+    for (let i = 0; i <= diffToMonday; i++) {
+      const date = new Date(monday);
+      date.setDate(monday.getDate() + i);
+      const key = date.toISOString().split("T")[0];
+      const todos = all[key] || [];
+      total += todos.filter(todo => todo.isFinished).length;
+    }
+  
+    return total;
+  },[]);
 
   useEffect(() => {
     saveTodosByDate(today, todos);
@@ -87,9 +109,10 @@ function App() {
             <TodoInput onAdd={handleAdd} />
             <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
             <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
+            <p>今週の達成数合計: {getThisWeekClearCount()}</p>
             <MyChart taskcount={taskcount} clearcount={clearcount} />
           </div>
-            <StackedImages />
+            <StackedImages getThisWeekClearCount={getThisWeekClearCount}/>
           </div>
           } />
           <Route path="/history" element={<History />} />
