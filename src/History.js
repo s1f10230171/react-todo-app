@@ -25,13 +25,13 @@ function History() {
             onClick={() => toggleDate(date)}
             style={{ cursor: "pointer", userSelect: "none" }}
           >
-            {date} {openDates[date] ? "▲" : "▼"}
+            {date} {openDates[date] ? <i class="bi bi-chevron-up"></i> : <i class="bi bi-chevron-down"></i>}
           </h3>
           {openDates[date] && (
           <ul>
             {todos.map(todo => (
               <li key={todo.id}>
-                {todo.text} {todo.isFinished ? "✔" : "✗"}
+                {todo.text} {todo.isFinished ? <i class="bi bi-check text-success"></i> : <i class="bi bi-x text-danger"></i>}
               </li>
             ))}
           </ul>
