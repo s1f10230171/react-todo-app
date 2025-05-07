@@ -1,0 +1,22 @@
+body {
+    height: 200vh;
+  }
+  
+  header {
+    position: fixed;
+    height: 100px;
+  }
+  
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+  }
+  
+  ul {
+    height: calc(100vh - 100px);
+    overflow-y: scroll;
+  }

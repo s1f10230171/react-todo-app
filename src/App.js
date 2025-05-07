@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import History from "./History";
 import Header from './Header';
 import StackedImages from './StackedImage';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const getToday = () => new Date().toISOString().split("T")[0];
@@ -100,7 +102,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div className='App-title'>ToDo管理アプリ</div>
         <Header />
         <Routes>
           <Route path="/" element={
