@@ -20,3 +20,7 @@
 .App-content {
   background-color: white;
 }
+
+.nav-link-hover:hover {
+  color: #ffc107 !important;
+}

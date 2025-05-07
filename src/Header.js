@@ -16,12 +16,12 @@ function Header() {
             <div className='collapse navbar-collapse' id="navbarContent">
                 <ul className='navbar-nav mb-2'>
                     <li className='nav-item'>
-                        <Link to="/">ホーム</Link>
+                        <Link to="/" className="text-white text-decoration-none nav-link-hover">ホーム</Link>
                     </li>
                 </ul>
                 <ul className='navbar-nav mb-2'>
                     <li className='nav-item'>
-                        <Link to="/history">履歴</Link>
+                        <Link to="/history" className="text-white text-decoration-none nav-link-hover">履歴</Link>
                     </li>
                 </ul>
             </div>
