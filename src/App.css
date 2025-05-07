@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.App-title {
+/* .App-title {
   background-color: #17194c;
   color: white;
   height: 50px;
@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .App-content {
   background-color: white;
