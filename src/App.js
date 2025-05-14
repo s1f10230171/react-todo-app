@@ -105,14 +105,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={
-          <div>
           <div className="App-content">
             <TodoInput onAdd={handleAdd} />
             <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
             <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
             <p>今週の達成数合計: {getThisWeekClearCount()}</p>
             <MyChart taskcount={taskcount} clearcount={clearcount} />
-          </div>
             <StackedImages getThisWeekClearCount={getThisWeekClearCount}/>
           </div>
           } />
