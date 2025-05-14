@@ -3,22 +3,28 @@ import React, { useState, useEffect, useRef } from "react";
 function StackedImages({getThisWeekClearCount}) {
   const [images, setImages] = useState([]);
   const imageList = [
-    "blue1.png",
+    "white4.png",
+    "white7.png",
+    "white6.png",
+    "white2.png",
+    "white1.png",
+    "pink6.png",
+    "pink7.png",
+    "pink5.png",
+    "pink4.png",
+    "purple1.png", 
+    "purple2.png", 
+    "blue5.png",
+    "blue4.png",
     "blue2.png",
+    "blue1.png",
     "yellow1.png",
     "yellow2.png",
-    "white1.png",
-    "white2.png",
-    "white3.png",
+    "yellow3.png",
     "orange1.png",
     "orange2.png",
-    // "pink1.png", 
-    "pink2.png",
-    "purple1.png", 
+    "red2.png", 
     "red1.png", 
-    "blue1.png",
-    "yellow1.png",
-    "white1.png",
   ];
   const currentIndex = useRef(0);
   const addSequentialImage = () => {
