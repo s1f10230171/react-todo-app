@@ -3,11 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 function StackedImages({getThisWeekClearCount}) {
   const [images, setImages] = useState([]);
   const imageList = [
-    "white4.png",
-    "white7.png",
-    "white6.png",
-    "white2.png",
-    "white1.png",
     "pink6.png",
     "pink7.png",
     "pink5.png",
@@ -18,6 +13,11 @@ function StackedImages({getThisWeekClearCount}) {
     "blue4.png",
     "blue2.png",
     "blue1.png",
+    "white4.png",
+    "white7.png",
+    "white6.png",
+    "white2.png",
+    "white1.png",
     "yellow1.png",
     "yellow2.png",
     "yellow3.png",
@@ -47,7 +47,7 @@ function StackedImages({getThisWeekClearCount}) {
   }, [getThisWeekClearCount]);
 
   return (
-    <div style={{ position: "relative", width: "400px", height: "550px", border: "1px solid #ccc", left: "10%", marginBottom:"30px", marginTop:"30px", }}>
+    <div style={{ position: "relative", width: "400px", height: "550px", left: "10%", marginBottom:"30px", marginTop:"30px",}}>
       <img src="/images/kabin.png"
         style={{
           width: "230px", 

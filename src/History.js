@@ -18,15 +18,15 @@ function History() {
 
   return (
     <div>
-      <h2>タスク履歴</h2>
+      <h3>タスク履歴</h3>
       {Object.entries(history).map(([date, todos]) => (
         <div key={date}>
-          <h3
+          <p
             onClick={() => toggleDate(date)}
             style={{ cursor: "pointer", userSelect: "none" }}
           >
             {date} {openDates[date] ? <i class="bi bi-chevron-up"></i> : <i class="bi bi-chevron-down"></i>}
-          </h3>
+          </p>
           {openDates[date] && (
           <ul>
             {todos.map(todo => (
