@@ -116,6 +116,7 @@ function App() {
           } />
           <Route path="/history" element={<History />} />
         </Routes>
+        <p>※お花は週に22輪までしか咲きません</p>
       </div>
     </Router>
   );
