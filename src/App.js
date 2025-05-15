@@ -112,11 +112,11 @@ function App() {
             <p>今週の達成数合計: {getThisWeekClearCount()}</p>
             <MyChart taskcount={taskcount} clearcount={clearcount} />
             <StackedImages getThisWeekClearCount={getThisWeekClearCount}/>
+            <p>※お花は週に22輪までしか咲きません</p>
           </div>
           } />
           <Route path="/history" element={<History />} />
         </Routes>
-        <p>※お花は週に22輪までしか咲きません</p>
       </div>
     </Router>
   );
