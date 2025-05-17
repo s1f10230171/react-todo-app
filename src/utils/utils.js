@@ -50,4 +50,44 @@ export const getThisWeekClearCount = () => {
   }
 
   return total;
+};
+
+// 曜日名を取得
+export const getWeekdayName = (dateStr) => {
+  const days = ['日', '月', '火', '水', '木', '金', '土'];
+  const day = new Date(dateStr).getDay();
+  return days[day];
+};
+
+// 今週の日付配列を取得
+export const getThisWeekDates = () => {
+  const now = new Date();
+  const day = now.getDay();
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - ((day + 6) % 7)); // 月曜を基準に週取得
+
+  const dates = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    dates.push(d.toISOString().split('T')[0]);
+  }
+  return dates;
+};
+
+// 今週のグラフ用データ生成
+export const generateWeeklyChartData = () => {
+  const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
+  const weekDates = getThisWeekDates();
+
+  return weekDates.map(date => {
+    const todos = all[date] || [];
+    const task = todos.length;
+    const clear = todos.filter(t => t.isFinished).length;
+    return {
+      name: getWeekdayName(date),
+      タスク: task,
+      クリア: clear
+    };
+  });
 }; 

@@ -1,4 +1,5 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { generateWeeklyChartData } from '../utils/utils';
 
 const getWeekdayName = (dateStr) => {
   const days = ['日', '月', '火', '水', '木', '金', '土'];
@@ -19,22 +20,6 @@ const getThisWeekDates = () => {
     dates.push(d.toISOString().split('T')[0]);
   }
   return dates;
-};
-
-const generateWeeklyChartData = () => {
-  const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
-  const weekDates = getThisWeekDates();
-
-  return weekDates.map(date => {
-    const todos = all[date] || [];
-    const task = todos.length;
-    const clear = todos.filter(t => t.isFinished).length;
-    return {
-      name: getWeekdayName(date),
-      タスク: task,
-      クリア: clear
-    };
-  });
 };
 
 function MyChart({taskcount, clearcount}) {
