@@ -76,7 +76,7 @@ function App() {
             <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
             <p>今週の達成数合計: {getThisWeekClearCount()}</p>
             <MyChart taskcount={taskcount} clearcount={clearcount} />
-            <StackedImages getThisWeekClearCount={getThisWeekClearCount}/>
+            <StackedImages />
             <p>※お花は週に22輪までしか咲きません</p>
           </div>
           } />
