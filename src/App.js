@@ -28,7 +28,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage todos={todos} taskcount={taskcount} clearcount={clearcount} handleAdd={handleAdd} handleRemove={handleRemove} handleToggle={handleToggle} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/history" element={<HistoryPage historyData={historyData} />} />
         </Routes>
       </div>
