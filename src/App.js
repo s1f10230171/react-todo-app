@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useTodos } from './hooks/useTodos';
 import './App.css';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
@@ -24,9 +24,7 @@ function App() {
     localStorage.setItem("todosByDate", JSON.stringify(all));
   };
 
-  const [todos, setTodos] = useState(() => loadTodosByDate(today));
-  const [taskcount, setTaskcount] = useState(0)
-  const [clearcount, setClearcount] = useState(0)
+  const { todos, setTodos, taskcount, clearcount, handleAdd, handleRemove, handleToggle } = useTodos();
   const [historyData, setHistoryData] = useState({});
 
   useEffect(() => {
@@ -34,40 +32,12 @@ function App() {
   }, [todos]);
 
   useEffect(() => {
-    setTaskcount(countUnfinishedTodos());
-  }, [todos]);
-
-  useEffect(() => {
     setHistoryData(JSON.parse(localStorage.getItem("todosByDate")) || {});
   }, [todos]);
 
-  const handleAdd = (text) => {
-    const newTodo = {
-      id: createId(),
-      text: text,
-      isFinished: false,
-      isDeleted: false
-    };
-    // console.log(`タスク追加: "${text}", 日付: ${today}`);
-    setTodos((todos) => [...todos, newTodo]);
-  }
-  const handleRemove = (deleteId) => {
-    setTodos(todos.map(todo =>
-      todo.id === deleteId ? { ...todo, isDeleted: true } : todo
-    ));
-    }
-  const handleToggle = (todoId) => {
-    setTodos(prevTodos => {
-      return prevTodos.map(todo => {
-        if (todo.id === todoId) {
-          const updated = { ...todo, isFinished: !todo.isFinished };
-          setClearcount(c => c + (updated.isFinished ? 1 : -1));
-          return updated;
-        }
-        return todo;
-      });
-    });
-  }
+  useEffect(() => {
+    setTaskcount(countUnfinishedTodos());
+  }, [todos]);
 
   return (
     <Router>
