@@ -1,20 +1,7 @@
 import { useState } from "react"
+import { formStyle, inputStyle, btnStyle } from "./styles";
 
 const TodoInput = ({onAdd}) => {
-    const formStyle = {
-        display: 'flex',
-    }
-    const inputStyle = {
-        backgroundColor: 'darkgrey', border: 'none',
-        outline: 'none', fontSize: 16, color: 'white',
-        lineHeight: 2, flex: 1 
-    }
-    const btnStyle = {
-        backgroundColor: 'dimgrey', border: 'none',
-        color: 'white', fontSize: 16, cursor: 'pointer', 
-        paddingLeft: 15, paddingRight: 15
-    }
-
     const [task, setTask] = useState('');
     const handleChange = (event) => {setTask(event.target.value);}
     const handleSubmit = (event) => {
