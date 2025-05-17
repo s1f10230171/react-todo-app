@@ -73,7 +73,7 @@ function App() {
       id: createId(),
       text: text,
       isFinished: false,
-      idDeleted: false
+      isDeleted: false
     };
     // console.log(`タスク追加: "${text}", 日付: ${today}`);
     setTodos((todos) => [...todos, newTodo]);
