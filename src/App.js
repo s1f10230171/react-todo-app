@@ -29,7 +29,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/history" element={<HistoryPage historyData={historyData} />} />
+          <Route path="/history" element={<HistoryPage />} />
         </Routes>
       </div>
     </Router>
