@@ -9,9 +9,9 @@ import Header from './Header';
 import StackedImages from './StackedImage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getToday, createId, loadTodosByDate, saveTodosByDate } from './utils';
 
 function App() {
-  const getToday = () => new Date().toISOString().split("T")[0];
   const today = getToday();
 
   const loadTodosByDate = (date) => {
@@ -23,9 +23,6 @@ function App() {
     all[date] = todos;
     localStorage.setItem("todosByDate", JSON.stringify(all));
   };
-
-  const createId = () => Math.random().toString(36).substring(2);
-
 
   const [todos, setTodos] = useState(() => loadTodosByDate(today));
   const [taskcount, setTaskcount] = useState(0)
