@@ -15,18 +15,8 @@ import { getToday,  getThisWeekClearCount } from './utils/utils';
 function App() {
   const today = getToday();
 
-  const saveTodosByDate = (date, todos) => {
-    const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
-    all[date] = todos;
-    localStorage.setItem("todosByDate", JSON.stringify(all));
-  };
-
   const { todos,  taskcount, clearcount, handleAdd, handleRemove, handleToggle } = useTodos();
   const [historyData, setHistoryData] = useState({});
-
-  useEffect(() => {
-    saveTodosByDate(today, todos);
-  }, [todos]);
 
   useEffect(() => {
     setHistoryData(JSON.parse(localStorage.getItem("todosByDate")) || {});
