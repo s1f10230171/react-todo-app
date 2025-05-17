@@ -9,7 +9,7 @@ import Header from './components/Header';
 import StackedImages from './components/StackedImage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getToday, createId, loadTodosByDate, saveTodosByDate } from './utils';
+import { getToday, createId, loadTodosByDate, saveTodosByDate, countUnfinishedTodos, getThisWeekClearCount } from './utils/utils';
 
 function App() {
   const today = getToday();
@@ -27,38 +27,6 @@ function App() {
   const [todos, setTodos] = useState(() => loadTodosByDate(today));
   const [taskcount, setTaskcount] = useState(0)
   const [clearcount, setClearcount] = useState(0)
-  const countUnfinishedTodos = () => {
-    const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
-    let count = 0;
-    Object.values(all).forEach(todoList => {
-      todoList.forEach(todo => {
-        if (!todo.isFinished) count++;
-      });
-    });
-    return count;
-  };
-
-  const getThisWeekClearCount = useCallback(() => {
-    const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
-    const now = new Date();
-    const currentDay = now.getDay(); // 0:日曜, 1:月曜, ..., 6:土曜
-    const monday = new Date(now);
-    // 月曜日の日付を取得（日曜だったら1日前、月曜ならそのまま）
-    const diffToMonday = (currentDay + 6) % 7;
-    monday.setDate(now.getDate() - diffToMonday);
-  
-    let total = 0;
-  
-    for (let i = 0; i <= diffToMonday; i++) {
-      const date = new Date(monday);
-      date.setDate(monday.getDate() + i);
-      const key = date.toISOString().split("T")[0];
-      const todos = all[key] || [];
-      total += todos.filter(todo => todo.isFinished).length;
-    }
-  
-    return total;
-  },[]);
 
   useEffect(() => {
     saveTodosByDate(today, todos);
