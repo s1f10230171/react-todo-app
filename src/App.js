@@ -4,16 +4,15 @@ import './App.css';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 import MyChart from './components/MyChart';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import History from "./components/History";
 import Header from './components/Header';
 import StackedImages from './components/StackedImage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getToday,  getThisWeekClearCount } from './utils/utils';
+import { getThisWeekClearCount } from './utils/utils';
 
 function App() {
-  const today = getToday();
 
   const { todos,  taskcount, clearcount, handleAdd, handleRemove, handleToggle } = useTodos();
   const [historyData, setHistoryData] = useState({});
