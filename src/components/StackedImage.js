@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { getThisWeekClearCount } from "../utils/utils";
 
-function StackedImages({getThisWeekClearCount}) {
+function StackedImages() {
   const [images, setImages] = useState([]);
   const imageList = [
     "pink6.png",
@@ -44,7 +45,7 @@ function StackedImages({getThisWeekClearCount}) {
     for (let i = 0; i < count && i < imageList.length; i++) {
       addSequentialImage();
     }
-  }, [getThisWeekClearCount]);
+  }, []);
 
   return (
     <div style={{ position: "relative", width: "400px", height: "550px", left: "10%", marginBottom:"30px", marginTop:"30px",}}>
