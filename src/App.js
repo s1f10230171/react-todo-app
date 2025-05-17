@@ -27,6 +27,7 @@ function App() {
   const [todos, setTodos] = useState(() => loadTodosByDate(today));
   const [taskcount, setTaskcount] = useState(0)
   const [clearcount, setClearcount] = useState(0)
+  const [historyData, setHistoryData] = useState({});
 
   useEffect(() => {
     saveTodosByDate(today, todos);
@@ -34,6 +35,10 @@ function App() {
 
   useEffect(() => {
     setTaskcount(countUnfinishedTodos());
+  }, [todos]);
+
+  useEffect(() => {
+    setHistoryData(JSON.parse(localStorage.getItem("todosByDate")) || {});
   }, [todos]);
 
   const handleAdd = (text) => {
@@ -80,7 +85,7 @@ function App() {
             <p>※お花は週に22輪までしか咲きません</p>
           </div>
           } />
-          <Route path="/history" element={<History />} />
+          <Route path="/history" element={<History historyData={historyData} />} />
         </Routes>
       </div>
     </Router>
