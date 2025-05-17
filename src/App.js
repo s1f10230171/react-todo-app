@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useTodos } from './hooks/useTodos';
 import './App.css';
 import TodoInput from './components/TodoInput';
@@ -9,22 +10,18 @@ import Header from './components/Header';
 import StackedImages from './components/StackedImage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getToday, createId, loadTodosByDate, saveTodosByDate, countUnfinishedTodos, getThisWeekClearCount } from './utils/utils';
+import { getToday,  getThisWeekClearCount } from './utils/utils';
 
 function App() {
   const today = getToday();
 
-  const loadTodosByDate = (date) => {
-    const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
-    return all[date] || [];
-  };
   const saveTodosByDate = (date, todos) => {
     const all = JSON.parse(localStorage.getItem("todosByDate")) || {};
     all[date] = todos;
     localStorage.setItem("todosByDate", JSON.stringify(all));
   };
 
-  const { todos, setTodos, taskcount, clearcount, handleAdd, handleRemove, handleToggle } = useTodos();
+  const { todos,  taskcount, clearcount, handleAdd, handleRemove, handleToggle } = useTodos();
   const [historyData, setHistoryData] = useState({});
 
   useEffect(() => {
@@ -33,10 +30,6 @@ function App() {
 
   useEffect(() => {
     setHistoryData(JSON.parse(localStorage.getItem("todosByDate")) || {});
-  }, [todos]);
-
-  useEffect(() => {
-    setTaskcount(countUnfinishedTodos());
   }, [todos]);
 
   return (
