@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.css';
-import TodoInput from './TodoInput';
-import TodoList from './TodoList';
-import MyChart from './MyChart';
+import TodoInput from './components/TodoInput';
+import TodoList from './components/TodoList';
+import MyChart from './components/MyChart';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import History from "./History";
-import Header from './Header';
-import StackedImages from './StackedImage';
+import History from "./components/History";
+import Header from './components/Header';
+import StackedImages from './components/StackedImage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getToday, createId, loadTodosByDate, saveTodosByDate } from './utils';
