@@ -11,6 +11,8 @@ import StackedImages from './components/StackedImage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getThisWeekClearCount } from './utils/utils';
+import HomePage from './pages/HomePage';
+import HistoryPage from './pages/HistoryPage';
 
 function App() {
 
@@ -26,18 +28,8 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={
-          <div className="App-content">
-            <TodoInput onAdd={handleAdd} />
-            <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
-            <p>{taskcount===0 ? `ALL CLEAR!!` : `未達成のタスク: ${taskcount} / 本日の達成数 : ${clearcount}`}</p>
-            <p>今週の達成数合計: {getThisWeekClearCount()}</p>
-            <MyChart taskcount={taskcount} clearcount={clearcount} />
-            <StackedImages />
-            <p>※お花は週に22輪までしか咲きません</p>
-          </div>
-          } />
-          <Route path="/history" element={<History historyData={historyData} />} />
+          <Route path="/" element={<HomePage todos={todos} taskcount={taskcount} clearcount={clearcount} handleAdd={handleAdd} handleRemove={handleRemove} handleToggle={handleToggle} />} />
+          <Route path="/history" element={<HistoryPage historyData={historyData} />} />
         </Routes>
       </div>
     </Router>
