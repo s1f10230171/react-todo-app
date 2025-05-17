@@ -11,7 +11,7 @@ const TodoInput = ({onAdd}) => {
     }
     const btnStyle = {
         backgroundColor: 'dimgrey', border: 'none',
-        color: 'white', fontSize: 16, cusor: 'pointer', 
+        color: 'white', fontSize: 16, cursor: 'pointer', 
         paddingLeft: 15, paddingRight: 15
     }
 
