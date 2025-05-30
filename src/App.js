@@ -82,7 +82,7 @@ function App() {
     setTodos((todos) => [...todos, newTodo]);
   }
   const handleRemove = (deleteId) => {
-    setTodos(todos.map(todo =>
+      setTodos(todos.map(todo =>
       todo.id === deleteId ? { ...todo, isDeleted: true } : todo
     ));
     }
